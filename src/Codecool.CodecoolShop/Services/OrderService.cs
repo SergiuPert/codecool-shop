@@ -34,6 +34,10 @@ namespace Codecool.CodecoolShop.Services
             if(product is null) return;
             _orderDao.RemoveItem(order,product);
         }
-
+        public decimal GetTotal(int orderId) {
+            Order order = _orderDao.Get(orderId);
+            if(order is null) return -1;
+            return _orderDao.GetTotal(order);
+        }
     }
 }
