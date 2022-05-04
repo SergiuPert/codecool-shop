@@ -19,8 +19,8 @@ namespace Codecool.CodecoolShop.Controllers {
             _logger = logger;
             OrderService= new OrderService(ProductDaoMemory.GetInstance(),OrderDaoMemory.GetInstance());
         }
-        public IActionResult OrderDetails(int id) {
-            var order = OrderService.GetOrder(id);
+        public IActionResult OrderDetails(int id=1) {
+            Order order = OrderService.GetOrder(id);
             return View(order);
         }
         public IActionResult AddToCart(int id) {
