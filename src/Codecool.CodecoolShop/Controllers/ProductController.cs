@@ -22,7 +22,8 @@ namespace Codecool.CodecoolShop.Controllers
             _logger = logger;
             ProductService = new ProductService(
                 ProductDaoMemory.GetInstance(),
-                ProductCategoryDaoMemory.GetInstance());
+                ProductCategoryDaoMemory.GetInstance(),             
+                SupplierDaoMemory.GetInstance());
         }
 
         public IActionResult Index(int id=1)
@@ -30,6 +31,13 @@ namespace Codecool.CodecoolShop.Controllers
             var products = ProductService.GetProductsForCategory(id);
             return View(products.ToList());
         }
+
+        public IActionResult IndexSupplier(int id = 1)
+        {
+            var products = ProductService.GetProductsBySupplier(id);
+            return View(products.ToList());
+        }
+
 
         //Add to cart route
         public IActionResult Privacy()
