@@ -1,0 +1,38 @@
+﻿@model Codecool.CodecoolShop.Models.Order;
+@inject Codecool.CodecoolShop.Services.ProductService products;
+@{
+    ViewData["Title"] = "Order Details";
+}
+
+div style="display: flex">
+    <ul class="container">
+        @foreach (var productId in Model.products.Keys)
+        {
+            Product product= products.Dao().Get(productId);
+
+            <li class="col-lg-3 col-lg-3" style="display: inline-block; max-width: 350px; height: 350px">
+                <div class="card">
+                    aici pui detaliile pentru "product"
+                    inclusiv un buton cu href pentru "orders/RemoveFromOrder/{product.Id}"
+
+
+
+@*                    <img src="/img/@(element.Name).jpg" style="height: 50%; width: 50%; align-self: center; padding-top: 10px">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">
+                            Product
+                            @{ var num = Model.IndexOf(element) + 1;}
+                            @num
+                        </h5>
+                        <h5 class="card-title">@element.Name</h5>
+                        <p class="card-text">@element.Description.</p>
+                        <p class="card-text">Category: @element.ProductCategory.Department</p>
+                        <p class="card-text">Supplier: @element.Supplier.Name</p>
+                        <p class="card-text text-center"><strong>Price: @element.DefaultPrice.ToString("C2")</strong></p>
+                        <a href="" type="button" class="btn btn-primary" style="float: bottom">Add To Cart</a>
+                    </div>
+                </div>
+*@            </li>
+        }
+    </ul>
+</div>

@@ -24,8 +24,7 @@ namespace Codecool.CodecoolShop.Daos.Implementations {
             if(order is not null) { 
                 order.products[product.Id]=1+order.products.GetValueOrDefault<int,int>(product.Id);
                 order.total+=product.DefaultPrice;
-            }
-        }
+        }   }
         public void RemoveItem(Order item,Product product) {
             Order order = data.FirstOrDefault<Order>(x => x.Id==item.Id);
             if(order is not null) {

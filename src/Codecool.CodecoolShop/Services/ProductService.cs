@@ -25,5 +25,7 @@ namespace Codecool.CodecoolShop.Services
             ProductCategory category = productCategoryDao.Get(categoryId);
             return productDao.GetBy(category);
         }
+
+        public IProductDao Dao() => productDao;
     }
 }
