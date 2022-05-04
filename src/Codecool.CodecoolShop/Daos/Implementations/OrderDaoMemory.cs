@@ -37,6 +37,6 @@ namespace Codecool.CodecoolShop.Daos.Implementations {
                 }
             }
         }
-        decimal GetTotal(Order item) => item.total;
+        public decimal GetTotal(Order item) => item.total;
     }
 }
