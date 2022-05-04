@@ -20,8 +20,11 @@ namespace Codecool.CodecoolShop.Daos.Implementations {
         public Order Get(int id) => data.Find(x => x.Id == id);
         public IEnumerable<Order> GetAll() => data;
         public void AddItem(Order item,Product product) {
-            Order order=data.FirstOrDefault<Order>(x => x.Id==item.Id);
-            if(order is not null) order.products[product.Id]=1+order.products.GetValueOrDefault<int,int>(product.Id);
+            Order order = data.FirstOrDefault<Order>(x => x.Id==item.Id);
+            if(order is not null) { 
+                order.products[product.Id]=1+order.products.GetValueOrDefault<int,int>(product.Id);
+                order.total+=product.DefaultPrice;
+            }
         }
         public void RemoveItem(Order item,Product product) {
             Order order = data.FirstOrDefault<Order>(x => x.Id==item.Id);
@@ -30,8 +33,10 @@ namespace Codecool.CodecoolShop.Daos.Implementations {
                 if(productId>0) {
                     order.products[product.Id]=order.products.GetValueOrDefault<int,int>(product.Id)-1;
                     if(order.products[product.Id]==0) order.products.Remove(product.Id);
+                    order.total-=product.DefaultPrice;
                 }
             }
         }
+        decimal GetTotal(Order item) => item.total;
     }
 }
