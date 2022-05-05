@@ -8,17 +8,19 @@ namespace Codecool.CodecoolShop.Services
     {
         private readonly IProductDao productDao;
         private readonly IProductCategoryDao productCategoryDao;
+        private readonly ISupplierDao supplierDao;
 
-        public ProductService(IProductDao productDao, IProductCategoryDao productCategoryDao)
+        public ProductService(IProductDao productDao, IProductCategoryDao productCategoryDao, ISupplierDao supplierDao)
         {
             this.productDao = productDao;
             this.productCategoryDao = productCategoryDao;
+            this.supplierDao = supplierDao;
         }
 
-        public ProductCategory GetProductCategory(int categoryId)
-        {
-            return productCategoryDao.Get(categoryId);
-        }
+        //public ProductCategory GetProductCategory(int categoryId)
+        //{
+        //    return productCategoryDao.Get(categoryId);
+        //}
 
         public IEnumerable<Product> GetProductsForCategory(int categoryId)
         {
@@ -27,5 +29,10 @@ namespace Codecool.CodecoolShop.Services
         }
 
         public IProductDao Dao() => productDao;
+        public IEnumerable<Product> GetProductsForSupplier(int supplierId)
+        {
+            Supplier supplier = supplierDao.Get(supplierId);
+            return productDao.GetBy(supplier);
+        }
     }
 }

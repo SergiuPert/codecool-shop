@@ -1,4 +1,4 @@
-@{
+﻿@{
     ViewData["Title"] = "Home Page";
 }
 @model List<Codecool.CodecoolShop.Models.Product>
@@ -6,12 +6,11 @@
 
 <div style="display: flex">
     <div class="categories">
-        <h5>Categories</h5>
+        <h1>Categories</h1>
         <ul>
             <li><a class="text-dark" asp-area="" asp-controller="Product" asp-action="Index"  asp-route-id="1">Tablets</a></li>
             <li><a class="text-dark" asp-area="" asp-controller="Product" asp-action="Index"  asp-route-id="2">Laptops</a></li>
         </ul>
-        
         <h1>Suppliers</h1>
         <ul>
             <li><a class="text-dark" asp-area="" asp-controller="Product" asp-action="SupplierSort"  asp-route-id="1">Amazon</a></li>
@@ -20,10 +19,6 @@
             <li><a class="text-dark" asp-area="" asp-controller="Product" asp-action="SupplierSort"  asp-route-id="4">Apple</a></li>
         </ul>
     </div>
-    
-    
-   
-    
     <div class="container">
         @foreach (var element in Model)
         {
@@ -42,12 +37,10 @@
                         <p class="card-text">Category: @element.ProductCategory.Department</p>
                         <p class="card-text">Supplier: @element.Supplier.Name</p>
                         <p class="card-text text-center"><strong>Price: @element.DefaultPrice.ToString("C2")</strong></p>
-                        <a asp-controller="Order" asp-action="AddToCart"  asp-route-id="@element.Id" type="button" class="btn btn-primary" style="float: bottom">Add To Cart</a>
+                        <a href="" type="button" class="btn btn-primary" style="float: bottom">Add To Cart</a>
                     </div>
                 </div>
             </div>
         }
     </div>
 </div>
-
-

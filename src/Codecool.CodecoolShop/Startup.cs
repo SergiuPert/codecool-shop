@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Codecool.CodecoolShop.Daos;
 using Codecool.CodecoolShop.Daos.Implementations;
 using Codecool.CodecoolShop.Models;
+using Codecool.CodecoolShop.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -27,10 +28,12 @@ namespace Codecool.CodecoolShop
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddSingleton<IOrderDao,OrderDaoMemory>();
-            services.AddSingleton<IProductDao,ProductDaoMemory>();
-            services.AddSingleton<ISupplierDao,SupplierDaoMemory>();
-            services.AddSingleton<IProductCategoryDao,ProductCategoryDaoMemory>();
+            services.AddSingleton<IOrderDao, OrderDaoMemory>();
+            services.AddSingleton<IProductCategoryDao, ProductCategoryDaoMemory>();
+            services.AddSingleton<IProductDao, ProductDaoMemory>();
+            services.AddSingleton<ISupplierDao, SupplierDaoMemory>();
+            services.AddSingleton<ProductService>();
+            services.AddSingleton<OrderService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -74,8 +77,12 @@ namespace Codecool.CodecoolShop
             supplierDataStore.Add(amazon);
             Supplier lenovo = new Supplier{Name = "Lenovo", Description = "Computers"};
             supplierDataStore.Add(lenovo);
+            Supplier asus = new Supplier { Name = "Asus", Description = "Cellpphone" };
+            supplierDataStore.Add(asus);
+            Supplier apple = new Supplier { Name = "Apple", Description = "Digital content and services" };
+            supplierDataStore.Add(apple);
 
-            ProductCategory tablet = new ProductCategory {Name = "Tablet", Department = "Hardware", Description = "A tablet computer, commonly shortened to tablet, is a thin, flat mobile computer with a touchscreen display." };
+            ProductCategory tablet = new ProductCategory { Name = "Tablet", Department = "Hardware", Description = "A tablet computer, commonly shortened to tablet, is a thin, flat mobile computer with a touchscreen display." };
             ProductCategory laptop = new ProductCategory { Name = "Laptop", Department = "Hardware", Description = "A God damn laptop, seriously, you know what a laptop is." };
             productCategoryDataStore.Add(tablet);
             productCategoryDataStore.Add(laptop);
@@ -83,7 +90,9 @@ namespace Codecool.CodecoolShop
             productDataStore.Add(new Product { Name = "Amazon Fire", DefaultPrice = 49.9m, Currency = "USD", Description = "Fantastic price. Large content ecosystem. Good parental controls. Helpful technical support.", ProductCategory = tablet, Supplier = amazon });
             productDataStore.Add(new Product { Name = "Lenovo IdeaPad Miix 700", DefaultPrice = 479.0m, Currency = "USD", Description = "Keyboard cover is included. Fanless Core m5 processor. Full-size USB ports. Adjustable kickstand.", ProductCategory = laptop, Supplier = lenovo });
             productDataStore.Add(new Product { Name = "Amazon Fire HD 8", DefaultPrice = 89.0m, Currency = "USD", Description = "Amazon's latest Fire HD 8 tablet is a great value for media consumption.", ProductCategory = tablet, Supplier = amazon });
+            productDataStore.Add(new Product { Name = "Asus Phone", DefaultPrice = 69.0m, Currency = "USD", Description = "BS", ProductCategory = tablet, Supplier = asus });
 
+            productDataStore.Add(new Product { Name = "ipad-pro", DefaultPrice = 49.9m, Currency = "USD", Description = "Fantastic price. Large content ecosystem. Good parental controls. Helpful technical support.", ProductCategory = tablet, Supplier = apple });
             Order order = new(1);
             orderDataStore.Add(order);
         }
