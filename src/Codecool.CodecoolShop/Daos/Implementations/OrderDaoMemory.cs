@@ -7,7 +7,7 @@ namespace Codecool.CodecoolShop.Daos.Implementations {
         private List<Order> data = new();
         private static OrderDaoMemory instance = null;
 
-        private OrderDaoMemory() { }
+        public OrderDaoMemory() {}
         public static OrderDaoMemory GetInstance() {
             if (instance == null) instance = new OrderDaoMemory();
             return instance;
