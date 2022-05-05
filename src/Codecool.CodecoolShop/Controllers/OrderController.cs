@@ -27,20 +27,15 @@ namespace Codecool.CodecoolShop.Controllers {
             orderDetails.products=OrderService.GetProducts(id);
             return View(orderDetails);
         }
-        [Route("/Order/AddToCart/{id}")]
-        public void AddToCart(int id) {
-            OrderService.AddToOrder(1,id);
-            Response.Redirect("/Product/Index");
-        }
-        //[Route("/Order/AddToCart/{id}")]
-        //public IActionResult AddToCart(int id) {
-        //    OrderService.AddToOrder(1,id);
-        //    return RedirectToRoute("/Product/Index");
-        //}
-        [Route("/Order/RemoveFromCart/{id}")]
-        public IActionResult RemoveFromCart(int id) {
+		[Route("/Order/AddToCart/{id}")]
+		public void AddToCart(int id) {
+			OrderService.AddToOrder(1,id);
+			Response.Redirect("/Product/Index");
+		}
+		[Route("/Order/RemoveFromCart/{id}")]
+        public void RemoveFromCart(int id) {
             OrderService.RemoveFromOrder(1,id);
-            return RedirectToRoute($"/Order/EditCart/{id}");
+            Response.Redirect($"/Order/EditCart/{id}");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
