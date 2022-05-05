@@ -1,12 +1,11 @@
-﻿@model Codecool.CodecoolShop.Models.Order;
-@inject Codecool.CodecoolShop.Services.ProductService products;
+﻿@model Codecool.CodecoolShop.ViewModels.OrderVM;
 @{
     ViewData["Title"] = "Order Details";
 }
 
-<div style="display: flex">
+@*<div style="display: flex">
     <ul class="container">
-        @foreach (var productId in Model.products.Keys)
+@*        @foreach (var productId in Model.products.Keys)
         {
             Product product= products.Dao().Get(productId);
 
@@ -25,69 +24,41 @@
                 </div>
             </li>
         }
+    </ul>
+</div>*@
 
-        
+<div>
+    <ul>
+        @foreach (Product prod in Model.products)
+        {
+            <li>
+                <div class="card">
+                    <div class="card-body" style="display: flex">
+                        <div>
+                            <img src="/img/@(prod.Name).jpg" style="height: 50%; width: 50%; align-self: center; padding-top: 10px">
+                        </div>
+                        <div>
+                            <h5 class="card-title text-center">
+                                Dummy
+                            </h5>
+                            <h5 class="card-title">@prod.Name</h5>
+                            <p class="card-text">@prod.Description</p>
+                            <p class="card-text">Category: @prod.ProductCategory.Department</p>
+                            <p class="card-text">Supplier: @prod.Supplier.Name</p>
+                            <p class="card-text">Quantity: @Model.order.products[prod.Id]</p>
+                            <a asp-controller="Order" asp-action="RemoveFromCart"  asp-route-id="@prod.Id" type="button" class="btn btn-primary" style="float: bottom">-</a>
+                            <a asp-controller="Order" asp-action="AddQuantity"  asp-route-id="@prod.Id" type="button" class="btn btn-primary" style="float: bottom">+</a>
+                        </div>
+                        <p class="card-text text-center"><strong>$@(@Model.order.products[prod.Id] * @prod.DefaultPrice)</strong></p>
+                    </div>
+                </div>
+            </li>
+        }
     </ul>
 </div>
-@*<div>
-    <div class="card">
-        <div class="card-body" style="display: flex">
-            <div>
-                <img src="/img/Amazon Fire HD 8.jpg" style="height: 50%; width: 50%; align-self: center; padding-top: 10px">
-            </div>
-            <div>
-                <h5 class="card-title text-center">
-                    Dummy
-                </h5>
-                <h5 class="card-title">dummy name</h5>
-                <p class="card-text">dummy description</p>
-                <p class="card-text">Category: dummy department</p>
-                <p class="card-text">Supplier: dummy supplier name</p>
-                <p class="card-text">Quantity: 999</p>
-                <a href="" type="button" class="btn btn-primary" style="float: bottom">-</a>
-                <a href="" type="button" class="btn btn-primary" style="float: bottom">+</a>
-            </div>
-            <p class="card-text text-center"><strong>1000$</strong></p>
-        </div>
-    </div>
 
-    <div class="card">
-        <div class="card-body" style="display: flex">
-            <div>
-                <img src="/img/Amazon Fire HD 8.jpg" style="height: 50%; width: 50%; align-self: center; padding-top: 10px">
-            </div>
-            <div>
-                <h5 class="card-title text-center">
-                    Dummy
-                </h5>
-                <h5 class="card-title">dummy name</h5>
-                <p class="card-text">dummy description</p>
-                <p class="card-text">Category: dummy department</p>
-                <p class="card-text">Supplier: dummy supplier name</p>
-                <p class="card-text text-center"><strong>dummy price$</strong></p>
-                <a href="" type="button" class="btn btn-primary" style="float: bottom">-</a>
-                <a href="" type="button" class="btn btn-primary" style="float: bottom">+</a>
-            </div>
-        </div>
-    </div>
+@* total cost
+    checkout button
+    better design
+*@
 
-    <div class="card">
-        <div class="card-body" style="display: flex">
-            <div>
-                <img src="/img/Amazon Fire HD 8.jpg" style="height: 50%; width: 50%; align-self: center; padding-top: 10px">
-            </div>
-            <div>
-                <h5 class="card-title text-center">
-                    Dummy
-                </h5>
-                <h5 class="card-title">dummy name</h5>
-                <p class="card-text">dummy description</p>
-                <p class="card-text">Category: dummy department</p>
-                <p class="card-text">Supplier: dummy supplier name</p>
-                <p class="card-text text-center"><strong>dummy price$</strong></p>
-                <a href="" type="button" class="btn btn-primary" style="float: bottom">-</a>
-                <a href="" type="button" class="btn btn-primary" style="float: bottom">+</a>
-            </div>
-        </div>
-    </div>
-</div>*@

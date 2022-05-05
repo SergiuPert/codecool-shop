@@ -8,7 +8,7 @@ namespace Codecool.CodecoolShop.Daos.Implementations
         private List<ProductCategory> data = new List<ProductCategory>();
         private static ProductCategoryDaoMemory instance = null;
 
-        public ProductCategoryDaoMemory()
+        private ProductCategoryDaoMemory()
         {
         }
 

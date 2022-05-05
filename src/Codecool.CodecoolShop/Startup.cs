@@ -28,12 +28,12 @@ namespace Codecool.CodecoolShop
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddSingleton<IOrderDao, OrderDaoMemory>();
-            services.AddSingleton<IProductCategoryDao, ProductCategoryDaoMemory>();
-            services.AddSingleton<IProductDao, ProductDaoMemory>();
-            services.AddSingleton<ISupplierDao, SupplierDaoMemory>();
-            services.AddSingleton<ProductService>();
-            services.AddSingleton<OrderService>();
+            //services.AddSingleton<IOrderDao, OrderDaoMemory>();
+            //services.AddSingleton<IProductCategoryDao, ProductCategoryDaoMemory>();
+            //services.AddSingleton<IProductDao, ProductDaoMemory>();
+            //services.AddSingleton<ISupplierDao, SupplierDaoMemory>();
+            //services.AddSingleton<ProductService>();
+            //services.AddSingleton<OrderService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -30,7 +30,6 @@ namespace Codecool.CodecoolShop.Controllers
         [Route("/Product")]
         [Route("/Product/Index")]
         [Route("/Product/Index/{id}")]
-
         public IActionResult Index(int id=1)
         {
             var products = ProductService.GetProductsForCategory(id);
