@@ -23,9 +23,9 @@ namespace Codecool.CodecoolShop.Controllers {
             Order order = OrderService.GetOrder(id);
             return View(order);
         }
-        public IActionResult AddToCart(int id) {
+        public void AddToCart(int id) {
             OrderService.AddToOrder(1,id);
-            return RedirectToRoute("/Product/Index/1");
+            Response.Redirect("/Product/Index");
         }
         public IActionResult RemoveFromCart(int id) {
             OrderService.RemoveFromOrder(1,id);
