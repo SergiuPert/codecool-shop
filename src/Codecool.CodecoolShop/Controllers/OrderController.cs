@@ -25,7 +25,7 @@ namespace Codecool.CodecoolShop.Controllers {
         }
         public IActionResult AddToCart(int id) {
             OrderService.AddToOrder(1,id);
-            return RedirectToRoute("/Product/Index");
+            return RedirectToRoute("/Product/Index/1");
         }
         public IActionResult RemoveFromCart(int id) {
             OrderService.RemoveFromOrder(1,id);

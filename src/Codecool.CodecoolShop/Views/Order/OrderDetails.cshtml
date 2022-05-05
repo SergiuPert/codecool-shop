@@ -4,7 +4,7 @@
     ViewData["Title"] = "Order Details";
 }
 
-@*<div style="display: flex">
+<div style="display: flex">
     <ul class="container">
         @foreach (var productId in Model.products.Keys)
         {
@@ -12,27 +12,82 @@
 
             <li class="col-lg-3 col-lg-3" style="display: inline-block; max-width: 350px; height: 350px">
                 <div class="card">
-                    aici pui detaliile pentru "product"
-                    inclusiv un buton cu href pentru "orders/RemoveFromOrder/{product.Id}"
-
-
-
-                    <img src="/img/@(element.Name).jpg" style="height: 50%; width: 50%; align-self: center; padding-top: 10px">
+                    <img src="/img/@(product.Name).jpg" style="height: 50%; width: 50%; align-self: center; padding-top: 10px">
                     <div class="card-body">
-                        <h5 class="card-title text-center">
-                            Product
-                            @{ var num = Model.IndexOf(element) + 1;}
-                            @num
-                        </h5>
-                        <h5 class="card-title">@element.Name</h5>
-                        <p class="card-text">@element.Description.</p>
-                        <p class="card-text">Category: @element.ProductCategory.Department</p>
-                        <p class="card-text">Supplier: @element.Supplier.Name</p>
-                        <p class="card-text text-center"><strong>Price: @element.DefaultPrice.ToString("C2")</strong></p>
-                        <a href="" type="button" class="btn btn-primary" style="float: bottom">Add To Cart</a>
+                        <h5 class="card-title">@product.Name dummy name</h5>
+                        <p class="card-text">@product.Description dummy description</p>
+                        <p class="card-text">Category: @product.ProductCategory.Department dummy department</p>
+                        <p class="card-text">Supplier: @product.Supplier.Name dummy supplier name</p>
+                        <p class="card-text text-center"><strong>Price: @product.DefaultPrice.ToString("C2") dummy price</strong></p>
+                        <a href="" type="button" class="btn btn-primary" style="float: bottom">-</a>
+                        <a href="" type="button" class="btn btn-primary" style="float: bottom">+</a>
                     </div>
                 </div>
             </li>
         }
+
+        
     </ul>
+</div>
+@*<div>
+    <div class="card">
+        <div class="card-body" style="display: flex">
+            <div>
+                <img src="/img/Amazon Fire HD 8.jpg" style="height: 50%; width: 50%; align-self: center; padding-top: 10px">
+            </div>
+            <div>
+                <h5 class="card-title text-center">
+                    Dummy
+                </h5>
+                <h5 class="card-title">dummy name</h5>
+                <p class="card-text">dummy description</p>
+                <p class="card-text">Category: dummy department</p>
+                <p class="card-text">Supplier: dummy supplier name</p>
+                <p class="card-text">Quantity: 999</p>
+                <a href="" type="button" class="btn btn-primary" style="float: bottom">-</a>
+                <a href="" type="button" class="btn btn-primary" style="float: bottom">+</a>
+            </div>
+            <p class="card-text text-center"><strong>1000$</strong></p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body" style="display: flex">
+            <div>
+                <img src="/img/Amazon Fire HD 8.jpg" style="height: 50%; width: 50%; align-self: center; padding-top: 10px">
+            </div>
+            <div>
+                <h5 class="card-title text-center">
+                    Dummy
+                </h5>
+                <h5 class="card-title">dummy name</h5>
+                <p class="card-text">dummy description</p>
+                <p class="card-text">Category: dummy department</p>
+                <p class="card-text">Supplier: dummy supplier name</p>
+                <p class="card-text text-center"><strong>dummy price$</strong></p>
+                <a href="" type="button" class="btn btn-primary" style="float: bottom">-</a>
+                <a href="" type="button" class="btn btn-primary" style="float: bottom">+</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body" style="display: flex">
+            <div>
+                <img src="/img/Amazon Fire HD 8.jpg" style="height: 50%; width: 50%; align-self: center; padding-top: 10px">
+            </div>
+            <div>
+                <h5 class="card-title text-center">
+                    Dummy
+                </h5>
+                <h5 class="card-title">dummy name</h5>
+                <p class="card-text">dummy description</p>
+                <p class="card-text">Category: dummy department</p>
+                <p class="card-text">Supplier: dummy supplier name</p>
+                <p class="card-text text-center"><strong>dummy price$</strong></p>
+                <a href="" type="button" class="btn btn-primary" style="float: bottom">-</a>
+                <a href="" type="button" class="btn btn-primary" style="float: bottom">+</a>
+            </div>
+        </div>
+    </div>
 </div>*@
