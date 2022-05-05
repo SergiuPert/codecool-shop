@@ -56,7 +56,8 @@
         }
     </ul>
 </div>
-
+ @Html.ActionLink("Checkout","Index", "Payment", new { id = @Model.order.Id}, new { htmlAttributes = new { @class = "btn btn-primary", type="button" , style="float: bottom"} } )
+ <a asp-controller="Payment" asp-action="Index"  asp-route-id="@Model.order.Id" type="button" class="btn btn-primary" style="float: bottom">Add To Cart</a>
 @* total cost
     checkout button
     better design

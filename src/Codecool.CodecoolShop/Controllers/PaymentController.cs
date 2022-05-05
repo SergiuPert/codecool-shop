@@ -1,58 +1,54 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Diagnostics;
-//using System.Linq;
-//using System.Threading.Tasks;
-//using Codecool.CodecoolShop.Daos;
-//using Codecool.CodecoolShop.Daos.Implementations;
-//using Microsoft.AspNetCore.Mvc;
-////using Microsoft.Extensions.Logging;
-//using Codecool.CodecoolShop.Models;
-//using Codecool.CodecoolShop.Services;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
+using Codecool.CodecoolShop.Daos;
+using Codecool.CodecoolShop.Daos.Implementations;
+using Microsoft.AspNetCore.Mvc;
+using Codecool.CodecoolShop.Models;
+using Codecool.CodecoolShop.Services;
+using Microsoft.Extensions.Logging;
 
-//namespace Codecool.CodecoolShop.Controllers
-//{
-//    public class PaymentController : Controller
-//    {
-//        private readonly ILogger<ProductController> _logger;
-//        public OrderService OrderService { get; set; }
+namespace Codecool.CodecoolShop.Controllers
+{
+    public class PaymentController : Controller
+    {
+        private readonly ILogger<PaymentController> _logger;
+        public OrderService OrderService { get; set; }
 
-//        public PaymentController(ILogger<ProductController> logger)
-//        {
-//            _logger = logger;
-//            OrderService = new OrderService(
-//                ProductDaoMemory.GetInstance(),
-//                ProductCategoryDaoMemory.GetInstance(),
-//                SupplierDaoMemory.GetInstance());
-//        }
-
-//        [Route("/")]
-//        [Route("/Product")]
-//        [Route("/Product/Index")]
-//        [Route("/Product/Index/{id}")]
-
-//        public IActionResult Index(int id = 1)
-//        {
-//            var products = ProductService.GetProductsForCategory(id);
-//            return View(products.ToList());
-//        }
-//        public IActionResult SupplierSort(int id = 1)
-//        {
-//            var products = ProductService.GetProductsForSupplier(id);
-//            return View(products.ToList());
-//        }
+        public PaymentController(ILogger<PaymentController> logger)
+        {
+            _logger = logger;
+            OrderService = new OrderService(
+                ProductDaoMemory.GetInstance(),
+                OrderDaoMemory.GetInstance());
+        }
 
 
-//        //Add to cart route
-//        public IActionResult Privacy()
-//        {
-//            return View();
-//        }
+        [Route("/Payment/PaymentPage/{id}")]
 
-//        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-//        public IActionResult Error()
-//        {
-//            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-//        }
-//    }
-//}
+        public IActionResult Index(int id = 1)
+        {
+            var order = OrderService.GetOrder(id);
+            return View("PaymentPage", new PaymentModel() { Order = order});
+        }
+        
+        [HttpPost]
+        [Route("/Payment/PaymentPage")]
+        public IActionResult ProcessPayment(PaymentModel paymentModel)
+        {
+            string name = paymentModel.FullName;
+            return View("PaymentComplete");
+
+        }
+
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity
+                .Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+    }
+}

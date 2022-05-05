@@ -73,3 +73,10 @@ body {
 .productCard {
     border-color: black;
 }
+
+.nav-container {
+    background: #767676;
+    color: white;
+    font-size: 20px;
+    padding: 31px 30px;
+}
