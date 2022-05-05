@@ -39,5 +39,14 @@ namespace Codecool.CodecoolShop.Services
             if(order is null) return -1;
             return _orderDao.GetTotal(order);
         }
+        public List<Product> GetProducts(int orderId) {
+            List<Product> products = new List<Product>();
+            Order order = _orderDao.Get(orderId);
+            foreach(int productId in order.products.Keys) {
+                Product product = _productDao.Get(productId);
+                products.Add(product);
+			}
+            return products;
+        }
     }
 }
