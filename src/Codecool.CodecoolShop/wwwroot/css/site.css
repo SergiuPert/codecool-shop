@@ -70,6 +70,13 @@ body {
   line-height: 60px; /* Vertically center the text there */
 }
 
-.product {
-    border-style: solid;
+.productCard {
+    border-color: black;
+}
+
+.nav-container {
+    background: #767676;
+    color: white;
+    font-size: 20px;
+    padding: 31px 30px;
 }

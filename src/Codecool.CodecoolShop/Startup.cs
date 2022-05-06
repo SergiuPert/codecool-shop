@@ -95,6 +95,7 @@ namespace Codecool.CodecoolShop
             productDataStore.Add(new Product { Name = "IPad Pro", DefaultPrice = 49.9m, Currency = "USD", Description = "Fantastic price. Large content ecosystem. Good parental controls. Helpful technical support.", ProductCategory = tablet, Supplier = apple });
             Order order = new(1);
             orderDataStore.Add(order);
+
         }
     }
 }
