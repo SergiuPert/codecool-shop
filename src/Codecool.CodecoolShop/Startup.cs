@@ -92,7 +92,7 @@ namespace Codecool.CodecoolShop
             productDataStore.Add(new Product { Name = "Amazon Fire HD 8", DefaultPrice = 89.0m, Currency = "USD", Description = "Amazon's latest Fire HD 8 tablet is a great value for media consumption.", ProductCategory = tablet, Supplier = amazon });
             productDataStore.Add(new Product { Name = "Asus Phone", DefaultPrice = 69.0m, Currency = "USD", Description = "BS", ProductCategory = tablet, Supplier = asus });
 
-            productDataStore.Add(new Product { Name = "ipad-pro", DefaultPrice = 49.9m, Currency = "USD", Description = "Fantastic price. Large content ecosystem. Good parental controls. Helpful technical support.", ProductCategory = tablet, Supplier = apple });
+            productDataStore.Add(new Product { Name = "IPad Pro", DefaultPrice = 49.9m, Currency = "USD", Description = "Fantastic price. Large content ecosystem. Good parental controls. Helpful technical support.", ProductCategory = tablet, Supplier = apple });
             Order order = new(1);
             orderDataStore.Add(order);
         }

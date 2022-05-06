@@ -26,21 +26,15 @@
         }
     </ul>
 </div>*@
-
 <div>
-    <ul>
         @foreach (Product prod in Model.products)
         {
-            <li>
                 <div class="card">
                     <div class="card-body" style="display: flex">
                         <div>
-                            <img src="/img/@(prod.Name).jpg" style="height: 50%; width: 50%; align-self: center; padding-top: 10px">
+                            <img src="/img/@(prod.Name).jpg" style="height: 300px; width: 300px; padding-top: 10px">
                         </div>
                         <div>
-                            <h5 class="card-title text-center">
-                                Dummy
-                            </h5>
                             <h5 class="card-title">@prod.Name</h5>
                             <p class="card-text">@prod.Description</p>
                             <p class="card-text">Category: @prod.ProductCategory.Department</p>
@@ -52,13 +46,7 @@
                         <p class="card-text text-center"><strong>$@(@Model.order.products[prod.Id] * @prod.DefaultPrice)</strong></p>
                     </div>
                 </div>
-            </li>
         }
-    </ul>
 </div>
-
-@* total cost
-    checkout button
-    better design
-*@
-
+<h1><strong>Total cost: $@Model.order.total</strong></h1>
+<a asp-controller="" asp-action=""  asp-route-id="" type="button" class="btn btn-primary" style="float: bottom">Payment</a>
