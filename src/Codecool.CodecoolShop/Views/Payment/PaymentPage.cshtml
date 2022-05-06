@@ -7,20 +7,20 @@
         <input itemid="id" type="hidden"></input>
         <div class="container">
             <div class="first-page-main-container"></div>
-            <div class="logo-container">
+            @*<div class="logo-container">
                 <img src="trebuie bagat logo-ul">
-            </div>
+            </div>*@
             <div class="all-info-container">
                 <div class="nav-container">
                     <p>
                         <span>
-                            "Total: "
+                            Total: 
                             <span id="total">@Model.Order.total</span>
                         </span>
                     </p>
                 </div>
                 <div class="details-container">
-                    <p id="order-number">"Order number: @Model.Order.Id"</p>
+                    <p id="order-number">Order number: @Model.Order.Id</p>
                 </div>
                 <div class="form-container">
                     <p class="form-container">Please complete your payment card details</p>

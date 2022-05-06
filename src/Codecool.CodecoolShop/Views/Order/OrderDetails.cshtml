@@ -32,7 +32,7 @@
                 <div class="card">
                     <div class="card-body" style="display: flex">
                         <div>
-                            <img src="/img/@(prod.Name).jpg" style="height: 300px; width: 300px; padding-top: 10px">
+                            <img src="/img/@(prod.Name).jpg" style="height: 300px; width: 300px; padding: 10px">
                         </div>
                         <div>
                             <h5 class="card-title">@prod.Name</h5>
@@ -48,12 +48,12 @@
                 </div>
         }
 </div>
- @Html.ActionLink("Checkout","Index", "Payment", new { id = @Model.order.Id}, new { htmlAttributes = new { @class = "btn btn-primary", type="button" , style="float: bottom"} } )
- <a asp-controller="Payment" asp-action="Index"  asp-route-id="@Model.order.Id" type="button" class="btn btn-primary" style="float: bottom">Add To Cart</a>
+@* @Html.ActionLink("Checkout","Index", "Payment", new { id = @Model.order.Id}, new { htmlAttributes = new { @class = "btn btn-primary", type="button" , style="float: bottom"} } )
+ <a asp-controller="Payment" asp-action="Index"  asp-route-id="@Model.order.Id" type="button" class="btn btn-primary" style="float: bottom">Add To Cart</a>*@
 @* total cost
     checkout button
     better design
 *@
 
 <h1><strong>Total cost: $@Model.order.total</strong></h1>
-<a asp-controller="" asp-action=""  asp-route-id="" type="button" class="btn btn-primary" style="float: bottom">Payment</a>
+<a asp-controller="Payment" asp-action="Index"  asp-route-id="@Model.order.Id" type="button" class="btn btn-primary" style="float: bottom">Payment</a>
