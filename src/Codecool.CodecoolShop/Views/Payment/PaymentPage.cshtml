@@ -1,0 +1,75 @@
+﻿
+@model Codecool.CodecoolShop.Models.PaymentModel
+
+
+@using (Html.BeginForm("ProcessPayment", "Payment", FormMethod.Post))
+{  
+        <input itemid="id" type="hidden"></input>
+        <div class="container">
+            <div class="first-page-main-container"></div>
+            @*<div class="logo-container">
+                <img src="trebuie bagat logo-ul">
+            </div>*@
+            <div class="all-info-container">
+                <div class="nav-container">
+                    <p>
+                        <span>
+                            Total: 
+                            <span id="total">@Model.Order.total</span>
+                        </span>
+                    </p>
+                </div>
+                <div class="details-container">
+                    <p id="order-number">Order number: @Model.Order.Id</p>
+                </div>
+                <div class="form-container">
+                    <p class="form-container">Please complete your payment card details</p>
+                    <div class="container-input-fullwidth">
+                        <label for="...." class="label-form-details">Card number</label>
+                        <input type="text" size="20" maxlength="19" autocomplete="off" class="input-fullwidth-form-details" 
+                    placeholder="Write your card number">
+                    </div>
+                    <div class="container-input-fullwidth">
+                        <label for="...." class="label-form-details">Full name</label>
+                        @Html.EditorFor(model => model.FullName, new { htmlAttributes = new { @class = "input-fullwidth-form-details", size = 32,  maxlength="90" , autocomplete="off", placeholder="Write your full name" } })  
+                        @* <input asp-for="FullName" class="form-control"  type="text" size="32" maxlength="90" autocomplete="off" class="input-fullwidth-form-details" 
+                    placeholder="Write your full name"/>*@
+
+                    </div>
+                    <div class="container-input-halfwidth left-side-input">
+                                <label for="month" class="label-form-details">Card expiration month</label>
+
+                                <select name="MM" id="month" class="select-control input-fullwidth-form-details">
+                                    <option default="" hidden=""></option>
+                                    <option value="01">01 (Ianuarie)</option>
+                                    <option value="02">02 (Februarie)</option>
+                                    <option value="03">03 (Martie)</option>
+                                    <option value="04">04 (Aprilie)</option>
+                                    <option value="05">05 (Mai)</option>
+                                    <option value="06">06 (Iunie)</option>
+                                    <option value="07">07 (Iulie)</option>
+                                    <option value="08">08 (August)</option>
+                                    <option value="09">09 (Septembrie)</option>
+                                    <option value="10">10 (Octombrie)</option>
+                                    <option value="11">11 (Noiembrie)</option>
+                                    <option value="12">12 (Decembrie)</option>
+                                </select>
+                    </div>
+                    <div class="container-input-halfwidth right-side-input">
+                            <label for="year" class="label-form-details">Card expiration year</label>
+                                <select name="YYYY" id="year" class="input-fullwidth-form-details select-control"><option default="" hidden=""></option><option value="2022">2022</option><option value="2023">2023</option><option value="2024">2024</option><option value="2025">2025</option><option value="2026">2026</option><option value="2027">2027</option><option value="2028">2028</option><option value="2029">2029</option><option value="2030">2030</option><option value="2031">2031</option><option value="2032">2032</option><option value="2033">2033</option><option value="2034">2034</option><option value="2035">2035</option><option value="2036">2036</option><option value="2037">2037</option><option value="2038">2038</option><option value="2039">2039</option><option value="2040">2040</option><option value="2041">2041</option><option value="2042">2042</option></select>                                                          
+                    </div>
+                    <div class="container-input-halfwidth left-side-input">
+                                <label for="cod" class="label-form-details">CVC/CVV2</label>
+                                <input name="$CVC" id="iCVC" maxlength="3" type="password" autocomplete="off" size="3" class="input-fullwidth-form-details" placeholder="_ _ _ ">     
+                    </div>
+                    <div>
+                       <input type="submit" value="Submit Payment" id="Submit" class="btn btn-default" onclick="location.href='@Url.Action("Payment", "ProcessPayment")'" />     
+                    </div>
+                </div>
+
+                </div>
+            </div>
+
+}
+

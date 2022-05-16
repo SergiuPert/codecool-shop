@@ -17,12 +17,11 @@ namespace Codecool.CodecoolShop.Daos.Implementations
 
         public static ProductDaoMemory GetInstance()
         {
-            if (instance == null)
-            {
-                instance = new ProductDaoMemory();
-            }
+			if(instance==null) {
+				instance=new ProductDaoMemory();
+			}
 
-            return instance;
+			return instance;
         }
 
         public void Add(Product item)
