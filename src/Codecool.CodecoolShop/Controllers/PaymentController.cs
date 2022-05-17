@@ -10,45 +10,31 @@ using Codecool.CodecoolShop.Models;
 using Codecool.CodecoolShop.Services;
 using Microsoft.Extensions.Logging;
 
-namespace Codecool.CodecoolShop.Controllers
-{
-    public class PaymentController : Controller
-    {
+namespace Codecool.CodecoolShop.Controllers {
+    public class PaymentController : Controller {
         private readonly ILogger<PaymentController> _logger;
-        public OrderService OrderService { get; set; }
+        private OrderService OrderService { get; set; }
 
-        public PaymentController(ILogger<PaymentController> logger)
-        {
+        public PaymentController(ILogger<PaymentController> logger,OrderService orderService) {
             _logger = logger;
-            OrderService = new OrderService(
-                ProductDaoMemory.GetInstance(),
-                OrderDaoMemory.GetInstance());
+            OrderService = orderService;
         }
-
 
         [Route("/Payment/PaymentPage/{id}")]
-
         public IActionResult Index(int id = 1)
-        {
-            var order = OrderService.GetOrder(id);
-            return View("PaymentPage", new PaymentModel() { Order = order});
-        }
-        
+            => View("PaymentPage",
+                new PaymentModel() { Order = OrderService.GetOrder(id)});
+
         [HttpPost]
         [Route("/Payment/PaymentPage")]
-        public IActionResult ProcessPayment(PaymentModel paymentModel)
-        {
-            string name = paymentModel.FullName;
+        public IActionResult ProcessPayment(PaymentModel paymentModel) {
+            string name = paymentModel.FullName; // <-- Aleca, ce aivrut sa faci cu asta?
             return View("PaymentComplete");
-
         }
-
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity
+            => View(new ErrorViewModel { RequestId = Activity
                 .Current?.Id ?? HttpContext.TraceIdentifier });
-        }
     }
 }

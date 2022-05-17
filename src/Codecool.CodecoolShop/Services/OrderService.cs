@@ -2,8 +2,7 @@ using System.Collections.Generic;
 using Codecool.CodecoolShop.Daos;
 using Codecool.CodecoolShop.Models;
 
-namespace Codecool.CodecoolShop.Services
-{
+namespace Codecool.CodecoolShop.Services {
     public class OrderService {
         private readonly IOrderDao _orderDao;
         private readonly IProductDao _productDao;
@@ -13,13 +12,13 @@ namespace Codecool.CodecoolShop.Services
             _productDao=productDao;
         }
         public Order GetOrder(int orderId) => _orderDao.Get(orderId);
-        public void CreateOrder(int userId) {
-            Order order = new(userId);
-            _orderDao.Add(order);
-        }
-        public void RemoveOrder(int orderId) {
-            _orderDao.Remove(orderId);
-        }
+
+        public void CreateOrder(int userId)
+            => _orderDao.Add(new Order(userId));
+
+        public void RemoveOrder(int orderId) 
+            => _orderDao.Remove(orderId);
+
         public void AddToOrder(int orderId,int productId) {
             Order order=_orderDao.Get(orderId);
             if(order is null) return;
@@ -40,12 +39,12 @@ namespace Codecool.CodecoolShop.Services
             return _orderDao.GetTotal(order);
         }
         public List<Product> GetProducts(int orderId) {
-            List<Product> products = new List<Product>();
+            List<Product> products = new();
             Order order = _orderDao.Get(orderId);
-            foreach(int productId in order.products.Keys) {
-                Product product = _productDao.Get(productId);
+            foreach(OrderItem item in order.products) {
+                Product product = _productDao.Get(item.ProductId);
                 products.Add(product);
-			}
+            }
             return products;
         }
     }
