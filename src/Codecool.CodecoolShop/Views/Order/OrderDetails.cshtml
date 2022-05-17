@@ -37,13 +37,13 @@
                         <div>
                             <h5 class="card-title">@prod.Name</h5>
                             <p class="card-text">@prod.Description</p>
-                            <p class="card-text">Category: @prod.ProductCategory.Department</p>
-                            <p class="card-text">Supplier: @prod.Supplier.Name</p>
+                            <p class="card-text">Category: @*@prod.ProductCategory.Department*@</p>
+                            <p class="card-text">Supplier: @*@prod.Supplier.Name*@</p>
                             <p class="card-text">Quantity: @Model.order.products[prod.Id]</p>
                             <a asp-controller="Order" asp-action="RemoveFromCart"  asp-route-id="@prod.Id" type="button" class="btn btn-primary" style="float: bottom">-</a>
                             <a asp-controller="Order" asp-action="AddQuantity"  asp-route-id="@prod.Id" type="button" class="btn btn-primary" style="float: bottom">+</a>
                         </div>
-                        <p class="card-text text-center"><strong>$@(@Model.order.products[prod.Id] * @prod.DefaultPrice)</strong></p>
+                        <p class="card-text text-center"><strong>aaaaaaaaaaaaa</strong></p>
                     </div>
                 </div>
         }

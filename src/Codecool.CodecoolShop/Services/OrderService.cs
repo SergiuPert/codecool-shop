@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Codecool.CodecoolShop.Daos;
+using Codecool.CodecoolShop.Daos.Implementations;
 using Codecool.CodecoolShop.Models;
 
 namespace Codecool.CodecoolShop.Services {
@@ -14,7 +15,13 @@ namespace Codecool.CodecoolShop.Services {
         public Order GetOrder(int orderId) => _orderDao.Get(orderId);
 
         public void CreateOrder(int userId)
-            => _orderDao.Add(new Order(userId));
+        {
+            Order order = new Order();
+            order.Id = -1;
+            order.userId = userId;
+            _orderDao.Add(order);
+            
+        }
 
         public void RemoveOrder(int orderId) 
             => _orderDao.Remove(orderId);

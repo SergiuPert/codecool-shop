@@ -7,6 +7,6 @@ namespace Codecool.CodecoolShop.Daos
     {
         void AddItem(Order item,Product product);
         void RemoveItem(Order item,Product product);
-        decimal GetTotal(Order item);
+        int GetTotal(Order item);
     }
 }

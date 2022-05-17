@@ -24,10 +24,10 @@ namespace Codecool.CodecoolShop.Daos.Implementations {
 
         public IEnumerable<Product> GetAll() => _appDbContext.Products;
 
-        public IEnumerable<Product> GetBy(Supplier supplier)
-            => _appDbContext.Products.Where(p => p.Supplier==supplier).ToList();
+        public IEnumerable<Product> GetBySupplierId(int supplierId)
+            => _appDbContext.Products.Where(p => p.SupplierId==supplierId).ToList();
 
-        public IEnumerable<Product> GetBy(ProductCategory productCategory)
-            => _appDbContext.Products.Where(p => p.ProductCategory==productCategory).ToList();
+        public IEnumerable<Product> GetByCategoryId(int productCategoryId)
+            => _appDbContext.Products.Where(p => p.ProductCategoryId==productCategoryId).ToList();
     }
 }

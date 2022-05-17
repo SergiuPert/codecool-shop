@@ -22,10 +22,17 @@ namespace Codecool.CodecoolShop.Daos.Implementations {
 		public void AddItem(Order item,Product product) {
 			List<OrderItem> items=_appDbContext.Items.Where(orderItem => orderItem.OrderId==item.Id).ToList();
 			OrderItem orderItem = items.FirstOrDefault(prod => prod.ProductId==product.Id);
-			if(orderItem is not null) orderItem.amount++;
-			else orderItem=new() { amount=1,ProductId=product.Id,OrderId=item.Id,Id=items.Count+1 };
+			if(orderItem is not null)
+            {
+				orderItem.amount++;
+				_appDbContext.Items.Update(orderItem);
+			}
+			else
+            {
+				orderItem = new OrderItem { amount = 1, ProductId = product.Id, OrderId = item.Id };
+				_appDbContext.Items.Add(orderItem);
+			}
 			item.total+=product.DefaultPrice;
-			_appDbContext.Items.Update(orderItem);
 			_appDbContext.Orders.Update(item);
 			_appDbContext.SaveChanges();
 		}
@@ -47,9 +54,13 @@ namespace Codecool.CodecoolShop.Daos.Implementations {
 			order.products.AddRange(_appDbContext.Items.Where(item => item.OrderId==id).ToList());
 			return order;
 		}
+		public int CountCarts()
+        {
+			return _appDbContext.Orders.Count();
+        }
 
 		public IEnumerable<Order> GetAll() => _appDbContext.Orders;
 
-		public decimal GetTotal(Order item) => item.total
+		public int GetTotal(Order item) => item.total;
 	}
 }
