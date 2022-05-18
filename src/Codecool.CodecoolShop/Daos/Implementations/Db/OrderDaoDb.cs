@@ -43,15 +43,16 @@ namespace Codecool.CodecoolShop.Daos.Implementations {
 			if(orderItem is null) return;
 			orderItem.amount--;
 			if(orderItem.amount==0) _appDbContext.Items.Remove(orderItem);
+			else _appDbContext.Items.Update(orderItem);
 			item.total-=product.DefaultPrice;
-			_appDbContext.Items.Update(orderItem);
 			_appDbContext.Orders.Update(item);
 			_appDbContext.SaveChanges();
 		}
 
 		public Order Get(int id) {
 			Order order=_appDbContext.Orders.Find(id);
-			order.products.AddRange(_appDbContext.Items.Where(item => item.OrderId==id).ToList());
+			var l=_appDbContext.Items.Where(item => item.OrderId==id).ToList();
+		//	order.products.AddRange(l);
 			return order;
 		}
 		public int CountCarts()

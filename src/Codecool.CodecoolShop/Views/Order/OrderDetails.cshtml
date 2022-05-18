@@ -1,4 +1,5 @@
-﻿@model Codecool.CodecoolShop.ViewModels.OrderVM;
+﻿@using Codecool.CodecoolShop.ViewModels
+@model Codecool.CodecoolShop.ViewModels.OrderVM;
 @{
     ViewData["Title"] = "Order Details";
 }
@@ -27,21 +28,21 @@
     </ul>
 </div>*@
 <div>
-        @foreach (Product prod in Model.products)
+        @foreach (OrderedProduct prod in Model.products)
         {
                 <div class="card">
                     <div class="card-body" style="display: flex">
                         <div>
-                            <img src="/img/@(prod.Name).jpg" style="height: 300px; width: 300px; padding: 10px">
+                            <img src="/img/@(prod.product.Name).jpg" style="height: 300px; width: 300px; padding: 10px">
                         </div>
                         <div>
-                            <h5 class="card-title">@prod.Name</h5>
-                            <p class="card-text">@prod.Description</p>
-                            <p class="card-text">Category: @*@prod.ProductCategory.Department*@</p>
-                            <p class="card-text">Supplier: @*@prod.Supplier.Name*@</p>
-                            <p class="card-text">Quantity: @Model.order.products[prod.Id]</p>
-                            <a asp-controller="Order" asp-action="RemoveFromCart"  asp-route-id="@prod.Id" type="button" class="btn btn-primary" style="float: bottom">-</a>
-                            <a asp-controller="Order" asp-action="AddQuantity"  asp-route-id="@prod.Id" type="button" class="btn btn-primary" style="float: bottom">+</a>
+                            <h5 class="card-title">@prod.product.Name</h5>
+                            <p class="card-text">@prod.product.Description</p>
+                            <p class="card-text">Category: @prod.category</p>
+                            <p class="card-text">Supplier: @prod.supplier</p>
+                            <p class="card-text">Quantity: @prod.amount</p>
+                            <a asp-controller="Order" asp-action="RemoveFromCart"  asp-route-id="@prod.product.Id" type="button" class="btn btn-primary" style="float: bottom">-</a>
+                            <a asp-controller="Order" asp-action="AddQuantity"  asp-route-id="@prod.product.Id" type="button" class="btn btn-primary" style="float: bottom">+</a>
                         </div>
                         <p class="card-text text-center"><strong>aaaaaaaaaaaaa</strong></p>
                     </div>

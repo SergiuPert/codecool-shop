@@ -15,17 +15,31 @@ namespace Codecool.CodecoolShop.Controllers {
     public class OrderController:Controller {
         private readonly ILogger<OrderController> _logger;
         private OrderService OrderService { get; set; }
+        private ProductService ProductService { get; set; }
 
-        public OrderController(ILogger<OrderController> logger,OrderService orderService) {
+        public OrderController(ILogger<OrderController> logger,OrderService orderService,ProductService productService) {
             _logger=logger;
             OrderService=orderService;
+            ProductService=productService;
         }
 
         [Route("/Order/OrderDetails/{id}")]
         public IActionResult OrderDetails(int id = 1) {
+            Order order = OrderService.GetOrder(id);
+            List<OrderedProduct> itemsVM = new();
+            foreach(OrderItem item in order.products) {
+                Product p = ProductService.Get(item.ProductId);
+                OrderedProduct itemVM = new OrderedProduct() {
+                    product=p,
+                    category=ProductService.GetProductCategory(p.ProductCategoryId).Department,
+                    supplier=ProductService.GetProductSupplier(p.SupplierId).Name,
+                    amount=item.amount
+                };
+                itemsVM.Add(itemVM);
+            }
             OrderVM orderDetails = new() {
                 order=OrderService.GetOrder(id),
-                products=OrderService.GetProducts(id)
+                products=itemsVM
             };
             return View(orderDetails);
         }
