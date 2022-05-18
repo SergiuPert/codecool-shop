@@ -49,10 +49,16 @@ namespace Codecool.CodecoolShop.Daos.Implementations {
 			_appDbContext.SaveChanges();
 		}
 
+		public Order Get(string userId) {
+			Order order = _appDbContext.Orders.First(order => order.userId==userId);
+			var l = _appDbContext.Items.Where(item => item.OrderId==order.Id).ToList();
+			//	order.products.AddRange(l);
+			return order;
+		}
 		public Order Get(int id) {
-			Order order=_appDbContext.Orders.Find(id);
-			var l=_appDbContext.Items.Where(item => item.OrderId==id).ToList();
-		//	order.products.AddRange(l);
+			Order order = _appDbContext.Orders.Find(id);
+			var l = _appDbContext.Items.Where(item => item.OrderId==order.Id).ToList();
+			//	order.products.AddRange(l);
 			return order;
 		}
 		public int CountCarts()

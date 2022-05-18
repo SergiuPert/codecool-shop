@@ -12,9 +12,9 @@ namespace Codecool.CodecoolShop.Services {
             _orderDao=orderDao;
             _productDao=productDao;
         }
-        public Order GetOrder(int orderId) => _orderDao.Get(orderId);
+        public Order GetOrder(string userId) => _orderDao.Get(userId);
 
-        public void CreateOrder(int userId)
+        public void CreateOrder(string userId)
         {
             Order order = new Order();
             order.Id = -1;
@@ -23,31 +23,33 @@ namespace Codecool.CodecoolShop.Services {
             
         }
 
-        public void RemoveOrder(int orderId) 
-            => _orderDao.Remove(orderId);
+        public void RemoveOrder(string userId) {
+            Order order = _orderDao.Get(userId);
+            _orderDao.Remove(order.Id);
+		}
 
-        public void AddToOrder(int orderId,int productId) {
-            Order order=_orderDao.Get(orderId);
+        public void AddToOrder(string userId,int productId) {
+            Order order=_orderDao.Get(userId);
             if(order is null) return;
             Product product=_productDao.Get(productId);
             if(product is null) return;
             _orderDao.AddItem(order,product);
         }
-        public void RemoveFromOrder(int orderId,int productId) {
-            Order order = _orderDao.Get(orderId);
+        public void RemoveFromOrder(string userId,int productId) {
+            Order order = _orderDao.Get(userId);
             if(order is null) return;
             Product product=_productDao.Get(productId);
             if(product is null) return;
             _orderDao.RemoveItem(order,product);
         }
-        public decimal GetTotal(int orderId) {
-            Order order = _orderDao.Get(orderId);
+        public decimal GetTotal(string userId) {
+            Order order = _orderDao.Get(userId);
             if(order is null) return -1;
             return _orderDao.GetTotal(order);
         }
-        public List<Product> GetProducts(int orderId) {
+        public List<Product> GetProducts(string userId) {
             List<Product> products = new();
-            Order order = _orderDao.Get(orderId);
+            Order order = _orderDao.Get(userId);
             foreach(OrderItem item in order.products) {
                 Product product = _productDao.Get(item.ProductId);
                 products.Add(product);
