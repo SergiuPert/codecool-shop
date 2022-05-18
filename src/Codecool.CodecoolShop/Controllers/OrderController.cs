@@ -12,6 +12,7 @@ using Codecool.CodecoolShop.Services;
 using Codecool.CodecoolShop.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using System.Text;
 
 namespace Codecool.CodecoolShop.Controllers {
     [Authorize]
@@ -49,20 +50,20 @@ namespace Codecool.CodecoolShop.Controllers {
 
         [Route("/Order/AddToCart/{id}")]
         public void AddToCart(int id) {
-            ISession session = services.GetRequiredService<IHttpContextAccessor>()?
-    .HttpContext.Session;
-
+            string userId = Encoding.ASCII.GetString(HttpContext.Session.Get("user"));
             OrderService.AddToOrder(userId,id);
             Response.Redirect("/Product/Index");
         }
         
         [Route("/Order/AddQuantity/{id}")]
         public void AddQuantity(int id) {
+            string userId = Encoding.ASCII.GetString(HttpContext.Session.Get("user"));
             OrderService.AddToOrder(userId, id);
             Response.Redirect($"/Order/OrderDetails/{userId}");
         }
         [Route("/Order/RemoveFromCart/{id}")]
         public void RemoveFromCart(int id) {
+            string userId = Encoding.ASCII.GetString(HttpContext.Session.Get("user"));
             OrderService.RemoveFromOrder(userId,id);
             Response.Redirect($"/Order/OrderDetails/{userId}");
         }

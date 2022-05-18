@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Mvc;
 using Codecool.CodecoolShop.Models;
 using Codecool.CodecoolShop.Services;
 using Microsoft.Extensions.Logging;
+using System.Text;
+using Microsoft.AspNetCore.Http;
 
 namespace Codecool.CodecoolShop.Controllers {
     public class PaymentController : Controller {
@@ -21,9 +23,11 @@ namespace Codecool.CodecoolShop.Controllers {
         }
 
         [Route("/Payment/PaymentPage/{id}")]
-        public IActionResult Index(int id = 1)
-            => View("PaymentPage",
-                new PaymentModel() { Order = OrderService.GetOrder(id)});
+        public IActionResult Index() {
+            string userId = Encoding.ASCII.GetString(HttpContext.Session.Get("user"));
+            return View("PaymentPage",
+                new PaymentModel() { Order = OrderService.GetOrder(userId)});
+        }
 
         [HttpPost]
         [Route("/Payment/PaymentPage")]
