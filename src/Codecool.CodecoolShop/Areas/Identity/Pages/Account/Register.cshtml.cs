@@ -90,6 +90,7 @@ namespace Codecool.CodecoolShop.Areas.Identity.Pages.Account
                         total=0
                         };
                     _appDbContext.Orders.Add(userCart);
+                    _appDbContext.SaveChanges();
                     HttpContext.Session.Set("user",Encoding.ASCII.GetBytes($"{user.Id}"));
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
