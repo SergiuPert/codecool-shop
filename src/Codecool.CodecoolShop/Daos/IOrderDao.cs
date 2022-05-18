@@ -8,5 +8,6 @@ namespace Codecool.CodecoolShop.Daos
         void AddItem(Order item,Product product);
         void RemoveItem(Order item,Product product);
         int GetTotal(Order item);
+        Order Get(string userId);
     }
 }

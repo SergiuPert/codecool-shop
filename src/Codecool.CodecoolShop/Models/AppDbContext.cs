@@ -1,7 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace Codecool.CodecoolShop.Models {
-	public class AppDbContext:DbContext {
+	public class AppDbContext:IdentityDbContext<IdentityUser> {
 		public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 		public DbSet<Product> Products { get; set; }
 		public DbSet<Order> Orders { get; set; }
@@ -33,7 +35,7 @@ namespace Codecool.CodecoolShop.Models {
             modelBuilder.Entity<Product>().HasData(new Product { Id = 4, Name = "Asus Phone", DefaultPrice = 69, Currency = "USD", Description = "BS", ProductCategoryId = 1, SupplierId = 3 });
             modelBuilder.Entity<Product>().HasData(new Product { Id = 5, Name = "IPad Pro", DefaultPrice = 49, Currency = "USD", Description = "Fantastic price. Large content ecosystem. Good parental controls. Helpful technical support.", ProductCategoryId = 1, SupplierId = 4 });
 
-            modelBuilder.Entity<Order>().HasData(new Order { Id = 1, Name = "Cart", Description = "Cart", total = 0, userId = 1 });
+            modelBuilder.Entity<Order>().HasData(new Order { Id = 1, Name = "Cart", Description = "Cart", total = 0, userId = "" });
         }
 
     }

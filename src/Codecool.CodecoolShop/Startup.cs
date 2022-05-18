@@ -9,6 +9,7 @@ using Codecool.CodecoolShop.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,13 +26,18 @@ namespace Codecool.CodecoolShop {
         public void ConfigureServices(IServiceCollection services) {
             services.AddControllersWithViews();
             services.AddDbContext<AppDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")))
-                .AddScoped<IOrderDao, OrderDaoDb>()
-                .AddScoped<IProductCategoryDao, ProductCategoryDaoDb>()
-                .AddScoped<IProductDao, ProductDaoDb>()
-                .AddScoped<ISupplierDao, SupplierDaoDb>()
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<AppDbContext>();
+            services.AddScoped<IOrderDao,OrderDaoDb>()
+                .AddScoped<IProductCategoryDao,ProductCategoryDaoDb>()
+                .AddScoped<IProductDao,ProductDaoDb>()
+                .AddScoped<ISupplierDao,SupplierDaoDb>()
                 .AddScoped<ProductService>()
-                .AddScoped<OrderService>();
+                .AddScoped<OrderService>()
+                .AddHttpContextAccessor()
+                .AddSession();
+                services.AddControllersWithViews();
+                services.AddRazorPages();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
@@ -39,12 +45,15 @@ namespace Codecool.CodecoolShop {
             else app.UseExceptionHandler("/Product/Error").UseHsts();
             app.UseHttpsRedirection()
                 .UseStaticFiles()
+                .UseSession()
                 .UseRouting()
+                .UseAuthentication()
                 .UseAuthorization()
                 .UseEndpoints(endpoints => {
                     endpoints.MapControllerRoute(
                         name: "default",
                         pattern: "{controller=Product}/{action=Index}/{id?}");
+                    endpoints.MapRazorPages();
             });
 
            // SetupInMemoryDatabases();

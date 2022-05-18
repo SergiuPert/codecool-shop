@@ -10,8 +10,11 @@ using Microsoft.Extensions.Logging;
 using Codecool.CodecoolShop.Models;
 using Codecool.CodecoolShop.Services;
 using Codecool.CodecoolShop.ViewModels;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 
 namespace Codecool.CodecoolShop.Controllers {
+    [Authorize]
     public class OrderController:Controller {
         private readonly ILogger<OrderController> _logger;
         private OrderService OrderService { get; set; }
@@ -24,7 +27,7 @@ namespace Codecool.CodecoolShop.Controllers {
         }
 
         [Route("/Order/OrderDetails/{id}")]
-        public IActionResult OrderDetails(int id = 1) {
+        public IActionResult OrderDetails(string id) {
             Order order = OrderService.GetOrder(id);
             List<OrderedProduct> itemsVM = new();
             foreach(OrderItem item in order.products) {
@@ -46,19 +49,22 @@ namespace Codecool.CodecoolShop.Controllers {
 
         [Route("/Order/AddToCart/{id}")]
         public void AddToCart(int id) {
-            OrderService.AddToOrder(1,id);
+            ISession session = services.GetRequiredService<IHttpContextAccessor>()?
+    .HttpContext.Session;
+
+            OrderService.AddToOrder(userId,id);
             Response.Redirect("/Product/Index");
         }
         
         [Route("/Order/AddQuantity/{id}")]
         public void AddQuantity(int id) {
-            OrderService.AddToOrder(1, id);
-            Response.Redirect("/Order/OrderDetails/1");
+            OrderService.AddToOrder(userId, id);
+            Response.Redirect($"/Order/OrderDetails/{userId}");
         }
         [Route("/Order/RemoveFromCart/{id}")]
         public void RemoveFromCart(int id) {
-            OrderService.RemoveFromOrder(1,id);
-            Response.Redirect($"/Order/OrderDetails/1");
+            OrderService.RemoveFromOrder(userId,id);
+            Response.Redirect($"/Order/OrderDetails/{userId}");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
