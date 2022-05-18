@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Codecool.CodecoolShop.Migrations
 {
-    public partial class dbBuild : Migration
+    public partial class ReCreateDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

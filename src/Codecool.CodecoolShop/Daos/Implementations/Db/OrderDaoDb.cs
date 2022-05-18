@@ -12,7 +12,7 @@ namespace Codecool.CodecoolShop.Daos.Implementations {
 			_appDbContext.Orders.Add(item);
 			_appDbContext.SaveChanges();
 		}
-
+		
 		public void Remove(int id) {
 			Order order=_appDbContext.Orders.Find(id);
 			_appDbContext.Orders.Remove(order);

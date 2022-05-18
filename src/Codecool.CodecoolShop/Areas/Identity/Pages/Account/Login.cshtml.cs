@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using System.Text;
 
 namespace Codecool.CodecoolShop.Areas.Identity.Pages.Account
 {
@@ -85,6 +86,9 @@ namespace Codecool.CodecoolShop.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
+                    //var fetchUser = context.UserMaster.Where(t => t.Email == model.Email).SingleOrDefault();
+                    var user = _userManager.Users.First(u => u.Email == Input.Email);
+                    HttpContext.Session.Set("user", Encoding.ASCII.GetBytes($"{user.Id}"));
                     return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)

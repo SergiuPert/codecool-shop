@@ -27,9 +27,11 @@ namespace Codecool.CodecoolShop.Controllers {
             ProductService=productService;
         }
 
-        [Route("/Order/OrderDetails/{id}")]
-        public IActionResult OrderDetails(string id) {
-            Order order = OrderService.GetOrder(id);
+        [Route("/Order/OrderDetails")]
+        public IActionResult OrderDetails() {
+            byte[] thing = HttpContext.Session.Get("user");
+            string userId = Encoding.ASCII.GetString(thing);
+            Order order = OrderService.GetOrder(userId);
             List<OrderedProduct> itemsVM = new();
             foreach(OrderItem item in order.products) {
                 Product p = ProductService.Get(item.ProductId);
@@ -42,7 +44,7 @@ namespace Codecool.CodecoolShop.Controllers {
                 itemsVM.Add(itemVM);
             }
             OrderVM orderDetails = new() {
-                order=OrderService.GetOrder(id),
+                order=OrderService.GetOrder(userId),
                 products=itemsVM
             };
             return View(orderDetails);
@@ -50,7 +52,8 @@ namespace Codecool.CodecoolShop.Controllers {
 
         [Route("/Order/AddToCart/{id}")]
         public void AddToCart(int id) {
-            string userId = Encoding.ASCII.GetString(HttpContext.Session.Get("user"));
+            byte[] thing = HttpContext.Session.Get("user");
+            string userId = Encoding.ASCII.GetString(thing);
             OrderService.AddToOrder(userId,id);
             Response.Redirect("/Product/Index");
         }
@@ -59,13 +62,13 @@ namespace Codecool.CodecoolShop.Controllers {
         public void AddQuantity(int id) {
             string userId = Encoding.ASCII.GetString(HttpContext.Session.Get("user"));
             OrderService.AddToOrder(userId, id);
-            Response.Redirect($"/Order/OrderDetails/{userId}");
+            Response.Redirect($"/Order/OrderDetails");
         }
         [Route("/Order/RemoveFromCart/{id}")]
         public void RemoveFromCart(int id) {
             string userId = Encoding.ASCII.GetString(HttpContext.Session.Get("user"));
             OrderService.RemoveFromOrder(userId,id);
-            Response.Redirect($"/Order/OrderDetails/{userId}");
+            Response.Redirect($"/Order/OrderDetails");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
