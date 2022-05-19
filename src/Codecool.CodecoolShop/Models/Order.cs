@@ -10,5 +10,6 @@ namespace Codecool.CodecoolShop.Models {
             //userId = user;
             products = new();
         }
+        public int Count() => products.Count;
     }
 }

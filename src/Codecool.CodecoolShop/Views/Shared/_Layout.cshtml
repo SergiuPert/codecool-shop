@@ -27,6 +27,7 @@
                         <li>
                             <a class="nav-link text-dark" asp-area="" asp-controller="Order" asp-action="OrderDetails" asp-route-id="1">Cart</a>
                         </li>
+                        @await Component.InvokeAsync("OrderCount")
                         <partial name="_LoginPartial"/>
                     </ul>
                 </div>
