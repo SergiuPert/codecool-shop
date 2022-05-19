@@ -1,0 +1,104 @@
+﻿
+@model Codecool.CodecoolShop.Models.Checkout
+
+
+@using (Html.BeginForm("ValidationCheckout", "Checkout", FormMethod.Post))
+{  
+        <input id="id" type="hidden"/>
+        <div class="container">
+            <div class="first-page-main-container"></div>
+            
+            <div class="all-info-container">
+                <div class="nav-container">
+                    <p>
+                        <span>
+                            Total: 
+                            <span id="total">@Model.Order.total</span>
+                        </span>
+                    </p>
+                </div>
+                
+                <div class="form-container">
+                    <p class="form-container">Please complete your delivery details</p>
+                    
+                    <div class="container-input-fullwidth">
+                        <label for="...." class="label-form-details">First name</label>
+                        @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new 
+                            { @class = "input-fullwidth-form-details", size = 32,  maxlength="90" , autocomplete="off", 
+                            placeholder="Write your first name" } })
+                    </div>
+
+                    <div class="container-input-fullwidth">
+                        <label for="...." class="label-form-details">Last name</label>
+                        @Html.EditorFor(model => model.LastName, new { htmlAttributes = new 
+                            { @class = "input-fullwidth-form-details", size = 32,  maxlength="90" , autocomplete="off", 
+                            placeholder="Write your last name" } })
+                    </div>
+
+                    <div class="container-input-fullwidth">
+                        <label for="...." class="label-form-details">Address 1</label>
+                        @Html.EditorFor(model => model.AdressLine1, new { htmlAttributes = new 
+                            { @class = "input-fullwidth-form-details", size = 32,  maxlength="90" , autocomplete="off", 
+                            placeholder="Write your address" } })
+                    </div>
+
+                    <div class="container-input-fullwidth">
+                        <label for="...." class="label-form-details">Address 2</label>
+                        @Html.EditorFor(model => model.AdressLine2, new { htmlAttributes = new 
+                            { @class = "input-fullwidth-form-details", size = 32,  maxlength="90" , autocomplete="off", 
+                            placeholder="Write your address" } })
+                    </div>
+
+                    <div class="container-input-fullwidth">
+                        <label for="...." class="label-form-details">Phone number</label>
+                        @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new 
+                            { @class = "input-fullwidth-form-details", size = 32,  maxlength="90" , autocomplete="off", 
+                            placeholder="Write your phone number" } })
+                    </div>
+
+                    <div class="container-input-fullwidth">
+                        <label for="...." class="label-form-details">Email</label>
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new 
+                            { @class = "input-fullwidth-form-details", size = 32,  maxlength="90" , autocomplete="off", 
+                            placeholder="Write your email address" } })
+                    </div>
+
+                    <div class="container-input-fullwidth">
+                        <label for="...." class="label-form-details">City</label>
+                        @Html.EditorFor(model => model.City, new { htmlAttributes = new 
+                            { @class = "input-fullwidth-form-details", size = 32,  maxlength="90" , autocomplete="off", 
+                            placeholder="Write your city" } })
+                    </div>
+
+                    <div class="container-input-fullwidth">
+                        <label for="...." class="label-form-details">State</label>
+                        @Html.EditorFor(model => model.State, new { htmlAttributes = new 
+                            { @class = "input-fullwidth-form-details", size = 32,  maxlength="90" , autocomplete="off", 
+                            placeholder="Write your state" } })
+                    </div>
+
+                    <div class="container-input-fullwidth">
+                        <label for="...." class="label-form-details">Country</label>
+                        @Html.EditorFor(model => model.Country, new { htmlAttributes = new 
+                            { @class = "input-fullwidth-form-details", size = 32,  maxlength="90" , autocomplete="off", 
+                            placeholder="Write your country" } })
+                    </div>
+
+                    <div class="container-input-fullwidth">
+                        <label for="...." class="label-form-details">Zip code</label>
+                        @Html.EditorFor(model => model.ZipCode, new { htmlAttributes = new 
+                            { @class = "input-fullwidth-form-details", size = 32,  maxlength="90" , autocomplete="off", 
+                            placeholder="Write your zip code" } })
+                    </div>
+                    
+                 
+                    <div>
+                       <input type="submit" value="Payment" id="Submit" class="btn btn-default" />     
+                    </div>
+                </div>
+
+                </div>
+            </div>
+
+}
+

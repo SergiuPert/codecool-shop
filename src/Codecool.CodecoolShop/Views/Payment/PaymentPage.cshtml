@@ -7,9 +7,7 @@
         <input itemid="id" type="hidden"></input>
         <div class="container">
             <div class="first-page-main-container"></div>
-            @*<div class="logo-container">
-                <img src="trebuie bagat logo-ul">
-            </div>*@
+          
             <div class="all-info-container">
                 <div class="nav-container">
                     <p>
@@ -32,8 +30,7 @@
                     <div class="container-input-fullwidth">
                         <label for="...." class="label-form-details">Full name</label>
                         @Html.EditorFor(model => model.FullName, new { htmlAttributes = new { @class = "input-fullwidth-form-details", size = 32,  maxlength="90" , autocomplete="off", placeholder="Write your full name" } })  
-                        @* <input asp-for="FullName" class="form-control"  type="text" size="32" maxlength="90" autocomplete="off" class="input-fullwidth-form-details" 
-                    placeholder="Write your full name"/>*@
+                        
 
                     </div>
                     <div class="container-input-halfwidth left-side-input">
@@ -64,7 +61,7 @@
                                 <input name="$CVC" id="iCVC" maxlength="3" type="password" autocomplete="off" size="3" class="input-fullwidth-form-details" placeholder="_ _ _ ">     
                     </div>
                     <div>
-                       <input type="submit" value="Submit Payment" id="Submit" class="btn btn-default" onclick="location.href='@Url.Action("Payment", "ProcessPayment")'" />     
+                       <input type="submit" value="Submit Payment" id="Submit" class="btn btn-default" onclick="location.href='@Url.Action("Payment", "PaymentComplete")'" />     
                     </div>
                 </div>
 
