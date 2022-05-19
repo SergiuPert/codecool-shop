@@ -44,7 +44,7 @@
                             <a asp-controller="Order" asp-action="RemoveFromCart"  asp-route-id="@prod.product.Id" type="button" class="btn btn-primary" style="float: bottom">-</a>
                             <a asp-controller="Order" asp-action="AddQuantity"  asp-route-id="@prod.product.Id" type="button" class="btn btn-primary" style="float: bottom">+</a>
                         </div>
-                        <p class="card-text text-center"><strong>aaaaaaaaaaaaa</strong></p>
+                        <p class="card-text text-center"><strong>@prod.product.DefaultPrice.ToString("C2")</strong></p>
                     </div>
                 </div>
         }
@@ -57,4 +57,7 @@
 *@
 
 <h1><strong>Total cost: $@Model.order.total</strong></h1>
-<a asp-controller="Payment" asp-action="Index"  asp-route-id="@Model.order.Id" type="button" class="btn btn-primary" style="float: bottom">Payment</a>
+@if (Model.order.total != 0)
+{
+ <a asp-controller="Payment" asp-action="Index"  asp-route-id="@Model.order.Id" type="button" class="btn btn-primary" style="float: bottom">Payment</a>    
+}
