@@ -4,29 +4,7 @@
     ViewData["Title"] = "Order Details";
 }
 
-@*<div style="display: flex">
-    <ul class="container">
-@*        @foreach (var productId in Model.products.Keys)
-        {
-            Product product= products.Dao().Get(productId);
 
-            <li class="col-lg-3 col-lg-3" style="display: inline-block; max-width: 350px; height: 350px">
-                <div class="card">
-                    <img src="/img/@(product.Name).jpg" style="height: 50%; width: 50%; align-self: center; padding-top: 10px">
-                    <div class="card-body">
-                        <h5 class="card-title">@product.Name dummy name</h5>
-                        <p class="card-text">@product.Description dummy description</p>
-                        <p class="card-text">Category: @product.ProductCategory.Department dummy department</p>
-                        <p class="card-text">Supplier: @product.Supplier.Name dummy supplier name</p>
-                        <p class="card-text text-center"><strong>Price: @product.DefaultPrice.ToString("C2") dummy price</strong></p>
-                        <a href="" type="button" class="btn btn-primary" style="float: bottom">-</a>
-                        <a href="" type="button" class="btn btn-primary" style="float: bottom">+</a>
-                    </div>
-                </div>
-            </li>
-        }
-    </ul>
-</div>*@
 <div>
         @foreach (OrderedProduct prod in Model.products)
         {
@@ -50,8 +28,9 @@
         }
 </div>
 
+
 <h1><strong>Total cost: $@Model.order.total</strong></h1>
 @if (Model.order.total != 0)
 {
- <a asp-controller="Payment" asp-action="Index"  asp-route-id="@Model.order.Id" type="button" class="btn btn-primary" style="float: bottom">Payment</a>    
+ <a asp-controller="Checkout" asp-action="Index" type="button" class="btn btn-primary" style="float: bottom">Checkout</a>    
 }
