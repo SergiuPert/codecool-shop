@@ -32,8 +32,7 @@ namespace Codecool.CodecoolShop.Controllers {
         [HttpPost]
         [Route("/Payment/PaymentComplete")]
         public IActionResult ProcessPayment(PaymentModel paymentModel) {
-            string name = paymentModel.FullName; // <-- Aleca, ce ai vrut sa faci cu asta?
-            return View("PaymentComplete");
+            return (ModelState.IsValid)?View("PaymentComplete"):View("PaymentPage",paymentModel);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

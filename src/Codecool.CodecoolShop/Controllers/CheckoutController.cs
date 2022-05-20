@@ -18,8 +18,7 @@ namespace Codecool.CodecoolShop.Controllers {
         private readonly ILogger<CheckoutController> _logger;
         private OrderService OrderService { get; set; }
 
-        public CheckoutController(ILogger<CheckoutController> logger,OrderService orderService) 
-        {
+        public CheckoutController(ILogger<CheckoutController> logger,OrderService orderService) {
             _logger = logger;
             OrderService = orderService;
         }
@@ -32,21 +31,13 @@ namespace Codecool.CodecoolShop.Controllers {
                 new Checkout() { Order = OrderService.GetOrder(userId)});
         }
 
-        
         [HttpPost]
         [Route("/Checkout/CheckoutPage")]
-        public IActionResult ValidationCheckout(Checkout model)
-        {
+        public IActionResult ValidationCheckout(Checkout model) {
             string userId = Encoding.ASCII.GetString(HttpContext.Session.Get("user"));
-            if (ModelState.IsValid)
-            {
-                return RedirectToAction("Index", "Payment");
-            }
-            else return View("CheckoutPage",
+            return (ModelState.IsValid)?RedirectToAction("Index", "Payment"):View("CheckoutPage",
                 new Checkout() { Order = OrderService.GetOrder(userId) });
         }
-
-
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
