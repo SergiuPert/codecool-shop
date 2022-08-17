@@ -14,7 +14,7 @@ The technologies used in the project are C# as the programming language, Visual 
 
 Website features:
 - Login and register functionality implemented through ASP.NET Core Identity
-- Entity framework Database
+- ASP.NET Core Entity framework Database
 - Users can add products to cart and add/remove from the product quantity
 - Checkout page
 
