@@ -4,7 +4,7 @@ The project was completed in 2 sprints (4 days per sprint)
 
 Team members: Radu Brezeanu, Pert Sergiu & Alexandra Dumitru
 
-The technologies used in the project are C# as the programming language, Visual studio as the IDE, the ASP.NET Core - MVC framework, Microsoft SQL server for the database and Razon Views, CSS & Bootstrap for the Frontend
+The technologies used in the project are C# as the programming language, Visual studio as the IDE, the ASP.NET Core - MVC framework, Microsoft SQL server for the database and Razor Views, CSS & Bootstrap for the Frontend
 
 ![C#](https://user-images.githubusercontent.com/89579316/185113100-f71d180a-1f64-449c-be0e-e7a5b2d406e5.jpg)
 ![VS](https://user-images.githubusercontent.com/89579316/185113105-c6b9943b-79ec-45bd-b1c5-1f7ab0d37d22.jpg)
@@ -16,7 +16,7 @@ The technologies used in the project are C# as the programming language, Visual 
 
 Website features:
 - Login and register functionality implemented through ASP.NET Core Identity
-- ASP.NET Core Entity framework Database
+- Microsoft SQL Database created with the ASP.NET Core Entity Framework
 - Users can add products to cart and add/remove from the product quantity
 - Checkout page
 
